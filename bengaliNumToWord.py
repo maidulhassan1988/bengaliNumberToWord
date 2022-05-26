@@ -119,14 +119,12 @@ def processor(number):
 
     num_list = []
 
-
     a = number[0]
     if a == '0' or a == '00':
         pass
     else:
         a = (f'{numeric_words[a]} হাজার')
         num_list.append(a)
-
 
     b = number[1]
     if b == '0' or b == '00':
@@ -135,15 +133,12 @@ def processor(number):
         b = (f'{numeric_words[b]}শত')
         num_list.append(b)
 
-
-
     c = number[2:4]
     if c == '0' or c == '00':
         pass
     else:
         c = (f'{numeric_words[c]} কোটি')
         num_list.append(c)
-
 
     d = number[4:6]
     if d == '0' or d == '00':
@@ -152,7 +147,6 @@ def processor(number):
         d = (f'{numeric_words[d]} লক্ষ')
         num_list.append(d)
 
-
     e = number[6:8]
     if e == '0' or e == '00':
         pass
@@ -160,14 +154,12 @@ def processor(number):
         e = (f'{numeric_words[e]} হাজার')
         num_list.append(e)
 
-
     f = number[8]
     if f == '0' or f == '00':
         pass
     else:
         f = (f'{numeric_words[f]}শত')
         num_list.append(f)
-
 
     g = number[9:]
     if g == '0' or g == '00':
@@ -177,8 +169,6 @@ def processor(number):
         num_list.append(g)
 
     return (' '.join(x for x in num_list))
-
-
 
 
 def func1(number):
@@ -204,22 +194,19 @@ def func3(number):
 
 
 def func4(number):
-	# this function deals with number that are bigger than 1 crore and have no fraction in them
-	# function 4 done well
+    number = str(number)
+    number = number.zfill(12)
 
-	number = str(number)
-	number = number.zfill(12)
+    first = number[0:5]
+    int_first = int(first)
 
-	first = number[0:5]
-	int_first = int(first)
+    second = number[5:]
+    int_second = int(second)
 
-	second = number[5:]
-	int_second = int(second)
-
-	if int_second == 0:
-		return f'টাকা {processor(int_first)} কোটি {processor(int_second)}মাত্র'
-	else:
-		return f'টাকা {processor(int_first)} কোটি {processor(int_second)} মাত্র'
+    if int_second == 0:
+        return f'টাকা {processor(int_first)} কোটি {processor(int_second)}মাত্র'
+    else:
+        return f'টাকা {processor(int_first)} কোটি {processor(int_second)} মাত্র'
 
 
 def func5(number):
@@ -238,30 +225,27 @@ def func5(number):
     int_second = int(second)
 
     if int_second == 0:
-        return f'{processor(int_first)} কোটি {processor(int_second)}এবং পয়সা {processor(b)} মাত্র'
+        return f'টাকা {processor(int_first)} কোটি {processor(int_second)}এবং পয়সা {processor(b)} মাত্র'
     else:
-        return f'{processor(int_first)} কোটি {processor(int_second)} এবং পয়সা {processor(b)} মাত্র'
+        return f'টাকা {processor(int_first)} কোটি {processor(int_second)} এবং পয়সা {processor(b)} মাত্র'
 
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def main(number):
-	str_number = str(number)
+    str_number = str(number)
 
-	if number >= 10000000:
-		if '.' in str_number:
-			return func5(number)
-		else:
-			return func4(number)
+    if number >= 10000000:
+        if '.' in str_number:
+            return func5(number)
+        else:
+            return func4(number)
 
-	else:
-		if '.' in str_number:
-			if number < 1:
-				return func2(number)
-			else:
-				return func1(number)
-		else:
-			return func3(number)
-
-
-print(main(12.35))
+    else:
+        if '.' in str_number:
+            if number < 1:
+                return func2(number)
+            else:
+                return func1(number)
+        else:
+            return func3(number)
